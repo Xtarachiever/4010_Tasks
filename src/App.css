@@ -167,3 +167,11 @@ a{
     width: 100%;
   }
 }
+@media(max-width:400px){
+  .second-header{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    flex-direction: column;
+  }
+}
