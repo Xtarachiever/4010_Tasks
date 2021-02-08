@@ -1,0 +1,26 @@
+{
+    "announcements":
+    [
+    {
+        "Date":"07/02/2021",
+        "Priority":"Medium",
+        "Deliver":"School Wide",
+        "Passage":"Email + Sms",
+        "Announcements":"Loremjeduvbdgubvc dchyssnjkvcsjnd fjujgjmdvkljm"
+    },
+    {
+        "Date":"13/02/2021",
+        "Priority":"Urgent",
+        "Deliver":"School Wide",
+        "Passage":"Sms",
+        "Announcements":"Loremjeduvbdgubvc dchyssnjkvcsjnd fjujgjmdvkljm"
+    },
+    {
+        "Date":"03/01/2020",
+        "Priority":"Normal",
+        "Deliver":"Course Wide",
+        "Passage":"Email",
+        "Announcements":"Loremjeduvbdgubvc dchyssnjkvcsjnd fjujgjmdvkljm"
+    }
+]
+}
