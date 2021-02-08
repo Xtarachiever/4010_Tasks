@@ -106,12 +106,10 @@ a{
 .Urgent{
   color: #FC0000;
   background-color:#FFEEEE;
-  opacity: 100%;
 }
 .Medium{
   color: #FCA700;
   background-color:#FFF9EE;
-  opacity: 100%;
 }
 .Normal{
   color: #30D000;
