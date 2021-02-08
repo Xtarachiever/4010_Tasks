@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Row, Col,Label, Input, Button} from 'reactstrap';
-import Json from './json'
+import { Nav, Navbar, NavbarToggler, Collapse, NavItem, Jumbotron,Modal,Input,Label,Button,Col } from 'reactstrap';
 import {sample} from './sample';
 import Upcoming from './upcoming';
 import Tab from './Tab';
@@ -16,6 +15,7 @@ class App extends React.Component {
   constructor (props){
     super(props);
     this.state={
+      isNavOpen:false,
       newDate:new Date(),
       datas:[],
       selected:'Upcoming',
@@ -26,12 +26,13 @@ class App extends React.Component {
       Announcements:'',
       Date: ''
     }
+    this.toggleNav = this.toggleNav.bind(this);
   }
-  componentDidMount(){
-    fetch(baseUrl+'announcements')
-      .then(response => response.json())
-      .then(data => this.setState({datas:data}))
-  }
+  // componentDidMount(){
+  //   fetch(baseUrl+'announcements')
+  //     .then(response => response.json())
+  //     .then(data => this.setState({datas:data}))
+  // }
   setSelected=(tab)=>{
     this.setState({selected:tab});
   }
@@ -54,6 +55,11 @@ class App extends React.Component {
   }
   changeSearch=(e)=>{
     this.setState({[e.target.name]:e.target.value})
+  }
+  toggleNav() {
+    this.setState({
+      isNavOpen: !this.state.isNavOpen
+    });
   }
   
   clearAll=()=>{
@@ -120,17 +126,28 @@ class App extends React.Component {
       <div className="all container">
         <form onSubmit={this.submitHandler}>
         <div className="row row-header">
-          <div className="col-5 col-sm-6 announce">
+          <div className="announce">
             <p className="bold">ANNOUNCEMENTS</p>
           </div>
-          <div className="row row-header second-header ml-5">
-            <img src={people} alt="people.png"/>
-            <div className="owner">
-              <p>Marina<br/><span>Super Administrator</span></p>
-            </div>
-            <p>Account Settings</p>
-            <img src={Interface} alt="interface.png"/>
-          </div>
+          <React.Fragment>
+            <Navbar dark expand="md">
+              <div className="container">
+                <NavbarToggler onClick={this.toggleNav}/>
+                    <Collapse isOpen={this.state.isNavOpen} navbar>
+                      <Nav navbar>
+                        <div className="second-header ml-3">
+                          <img src={people} alt="people.png"/>
+                          <div className="owner">
+                            <p>Marina<br/><span>Super Administrator</span></p>
+                          </div>
+                          <p>Account Settings</p>
+                          <img src={Interface} alt="interface.png"/>
+                        </div>
+                      </Nav>
+                    </Collapse>
+              </div>
+            </Navbar>
+          </React.Fragment>
           <div className="col-12 ml-3">
             <Label htmlFor="announcements">Add a new announcements</Label>
           </div>

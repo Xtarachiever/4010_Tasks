@@ -1,7 +1,7 @@
 *{
-  margin: 0;
+  /* margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; */
   font-family: 'Nunito Sans';
 }
 .root{
@@ -29,6 +29,9 @@
   padding: 20px;
   margin: 5px;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 img{
   object-fit: cover;
@@ -36,7 +39,7 @@ img{
 .second-header{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 .second-header img{
   display: flex;
@@ -83,12 +86,12 @@ a{
   cursor: pointer;
 }
 .Urgent{
-  color: red;
-  background-color:#FFEEEE ;
+  color: #FC0000;
+  background-color:#FFEEEE;
   opacity: 100%;
 }
 .Medium{
-  color: hsla(40, 100%, 49%, 1);
+  color: #FCA700;
   background-color:#FFF9EE;
   opacity: 100%;
 }
