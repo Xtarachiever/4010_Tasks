@@ -33,13 +33,23 @@
   align-items: center;
   flex-direction: column;
 }
+.account{
+  display: flex;
+  flex-direction: row;
+  margin-left: 5px;
+}
+.account p,.account img{
+  margin-right: 10px;
+  background-color: #FFFFFF;
+  padding: 2px;
+}
 img{
   object-fit: cover;
 }
 .second-header{
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  align-items: flex-end;
+  justify-content: space-evenly;
 }
 .second-header img{
   display: flex;

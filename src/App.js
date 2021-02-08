@@ -140,8 +140,10 @@ class App extends React.Component {
                           <div className="owner">
                             <p>Marina<br/><span>Super Administrator</span></p>
                           </div>
-                          <p>Account Settings</p>
-                          <img src={Interface} alt="interface.png"/>
+                          <div className="account">
+                            <p>Account Settings</p>
+                           <img src={Interface} alt="interface.png"/>
+                          </div>
                         </div>
                       </Nav>
                     </Collapse>

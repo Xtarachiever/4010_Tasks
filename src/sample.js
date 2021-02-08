@@ -16,7 +16,7 @@ export const sample=
     },
     {
         "Date":"23/04/07",
-        "Priority":"Urgent",
+        "Priority":"Normal",
         "Deliver":"Course Wide",
         "Passage":"Email",
         "Announcements":"Loremjeduvbdgubvc dchyssnjkvcsjnd fjujgjmdvkljm"
