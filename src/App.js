@@ -203,7 +203,7 @@ class App extends React.Component {
                   <div className="announcement">
                       {
                           filteredSearch.map(id=>
-                          <div className='row content each-announcement'> 
+                          <div className='row row-content each-announcement'> 
                               <div className='col-12 col-sm-3 starts'>
                                   <p className={`pills bold ${id.Priority || ""}`}>{id.Priority}</p>
                                   <p>{id.Passage}</p>
