@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;800&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -26,6 +27,22 @@ body{
   --delete:#F9265F;
   --shade:#F6F8FB;
 }
+.tabs .nav-item{
+  padding: 1px;
+  margin-bottom: 3px;
+}
+.nav-item a{
+  border: 1px solid #EDEEF4;
+  padding: 10px 30px 10px 30px;
+  border-bottom: none;
+  background-color: #FFFFFF;
+  margin-left: -2px;
+  border-bottom-color: rgb(237, 238, 244);
+  border-top-right-radius: 20px;
+  border-top-left-radius: 10px;
+  transform: skewX(33deg);
+  position: relative;
+}
 .row-header{
   display: flex;
   align-items: center;
@@ -33,7 +50,7 @@ body{
   padding: 0 30px 0 30px;
 }
 .bold{
-  font-weight: 600;
+  font-weight: 900;
 }
 .all{
   background-color:#eaebec;
@@ -41,29 +58,51 @@ body{
   margin: 5px;
   border-radius: 10px;
 }
-.account{
-  display: flex;
-  flex-direction: row;
-  margin-left: 5px;
-}
-.account p,.account img{
-  margin-right: 10px;
-  background-color: #FFFFFF;
-  padding: 2px;
-}
 img{
   object-fit: cover;
+  width: 100%;
 }
 .second-header{
   display: flex;
-  align-items: flex-end;
-  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
-.second-header img{
+.second-header div{
+  display: flex;
+  align-items: center;
+}
+.second-header div img{
+  width: 15px;
   display: flex;
   align-self: center;
 }
-
+.second-header .people img{
+  width: 40px;
+  position: relative;
+  top: -6px;
+}
+.second-header .social{
+  background-color: #FFFFFF;
+  padding: 0px 10px;
+  margin-right: 5px;
+  position: relative;
+  top: -2px;
+  display: flex;
+  justify-content: space-between;
+  width: 140px;
+  border-radius: 5px;
+}
+.second-header .interface{
+  background-color: #FFFFFF;
+  padding: 5px;
+  border-radius: 3px;
+}
+.second-header .social p{
+  position: relative;
+  top: 10px;
+  font-size: 13px;
+}
 .row-content {
   margin:0px auto;
   padding: 30px 0px 30px 0px;
@@ -83,12 +122,13 @@ select{
   left: 30px;
 }
 .input input{
-  background-color:var(--shade);
+  background-color:#F6F8FB;
   box-shadow: 3px 3px #EBEBEB2E;
   padding-left: 40px;
 }
 .button button{
-  background-color: var(--purple);
+  background-color:#575DA6;
+  color: #FAFAFC;
 }
 .announcement{
   margin-top: 40px;
@@ -103,23 +143,26 @@ select{
 a{
   cursor: pointer;
 }
-.Urgent{
+.URGENT{
   color: #FC0000;
   background-color:#FFEEEE;
 }
-.Medium{
+.MEDIUM{
   color: #FCA700;
   background-color:#FFF9EE;
 }
-.Normal{
+.NORMAL{
   color: #30D000;
   background-color: #d9f3e2;
 }
 .upcoming{
-  background-color: #FFFFFF;
   border-radius: 20px;
   padding: 10px;
   width: 100%;
+}
+.upcometabs{
+  background-color: #FFFFFF;
+  padding: 5px;
 }
 .pills{
   display: flex;
@@ -131,7 +174,12 @@ a{
 }
 .starts{
   width: 100%;
+  max-width: 200px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
+
 .form-details{
   display: flex;
   align-items: center;

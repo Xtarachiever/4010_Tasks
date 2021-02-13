@@ -136,13 +136,18 @@ class App extends React.Component {
                     <Collapse isOpen={this.state.isNavOpen} navbar>
                       <Nav navbar>
                         <div className="second-header ml-3">
-                          <img src={people} alt="people.png"/>
+                          <div className="people">
+                            <img src={people} alt="people.png"/>
+                          </div>
                           <div className="owner">
                             <p>Marina<br/><span>Super Administrator</span></p>
                           </div>
-                          <div className="account">
-                            <p>Account Settings</p>
-                           <img src={Interface} alt="interface.png"/>
+                            <div className="social">
+                              <img src={social} alt="social.png"/>
+                              <p>Account Settings</p>
+                          </div>
+                          <div className="interface">
+                            <img src={Interface} alt="interface.png"/>
                           </div>
                         </div>
                       </Nav>
@@ -150,7 +155,8 @@ class App extends React.Component {
               </div>
             </Navbar>
           </React.Fragment>
-          <div className="col-12 ml-3">
+          </div>
+          <div className="col-12">
             <Label htmlFor="announcements">Add a new announcements</Label>
           </div>
           <Col md={{size:15}} className="col-sm-12">
@@ -158,7 +164,6 @@ class App extends React.Component {
             name="Announcements" 
             value={Announcements} onChange={this.changeHandler}/>
           </Col>
-        </div>
         <div className="row row-content form-details">
             <div className="col-sm-5 col-md-3 col-12 mt-1">
               <Input type="date" placeholder="Select a date" onChange={this.changeHandler} value={Date} name="Date"/>
@@ -189,14 +194,14 @@ class App extends React.Component {
               </select>
             </div>
             <div className="button mt-1">
-              <Button color="secondary"  type="submit" className="fa fa-plus-circle btn-lg ml-3" onClick={this.clearAll}> Add Announcements</Button>
+              <Button type="submit" className="fa fa-plus-circle btn-lg ml-3" onClick={this.clearAll}> Add Announcements</Button>
             </div>
         </div>
         </form>
         <div className="upcoming">
           <Upcoming tabs={['Upcoming','Past']} selected={this.state.selected} setSelected={this.setSelected}>
             <Tab isSelected={this.state.selected==='Upcoming'}>
-            <div className="container">
+            <div className="upcometabs container">
                   <div className="col-12 col-sm-12 input">
                       <i className="fa fa-search" ></i>
                       <Input type="text" id="input" placeholder="Search for an announcements" name="search" value={search} 
