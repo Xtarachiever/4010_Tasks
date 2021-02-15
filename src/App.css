@@ -58,6 +58,9 @@ body{
   margin: 5px;
   border-radius: 10px;
 }
+ul li{
+  color: #333CBF;
+}
 img{
   object-fit: cover;
   width: 100%;
@@ -73,7 +76,7 @@ img{
   align-items: center;
 }
 .second-header div img{
-  width: 15px;
+  width: 12px;
   display: flex;
   align-self: center;
 }
@@ -84,13 +87,13 @@ img{
 }
 .second-header .social{
   background-color: #FFFFFF;
-  padding: 0px 10px;
   margin-right: 5px;
   position: relative;
   top: -2px;
   display: flex;
-  justify-content: space-between;
-  width: 140px;
+  justify-content: space-around;
+  width: 120px;
+  height: 25px;
   border-radius: 5px;
 }
 .second-header .interface{
@@ -101,7 +104,7 @@ img{
 .second-header .social p{
   position: relative;
   top: 10px;
-  font-size: 13px;
+  font-size: 12px;
 }
 .row-content {
   margin:0px auto;
@@ -131,7 +134,11 @@ select{
   color: #FAFAFC;
 }
 .announcement{
-  margin-top: 40px;
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .each-announcement{
   background-color: #FFFFFF;
@@ -139,6 +146,7 @@ select{
   margin-top: 10px;
   border-radius: 10px;
   padding: 5px 0px 5px 0px;
+  width: 100%;
 }
 a{
   cursor: pointer;
@@ -209,6 +217,9 @@ a{
   background-color:#F9265F;
   color: white;
   border-radius: 10px;
+}
+.tabs ul li a{
+  text-decoration: none;
 }
 @media(max-width:760px){
   .each-announcement{

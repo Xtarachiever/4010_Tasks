@@ -22,7 +22,7 @@ class App extends React.Component {
       search:'',
       Deliver:'Deliver',
       Priority:'Priority',
-      Passage:'Passage',
+      Notification_Method:'Notification Method',
       Announcements:'',
       Date: ''
     }
@@ -68,7 +68,7 @@ class App extends React.Component {
       search:'',
       Deliver:'Deliver',
       Priority:'Priority',
-      Passage:'Passage',
+      Notification_Method:'Notification Method',
       Announcements:'',
       Date:"",
     })
@@ -119,7 +119,7 @@ class App extends React.Component {
   }
   }
   render(){
-    const {Date,Deliver,Priority,Passage,Announcements,search}=this.state
+    const {Date,Deliver,Priority,Notification_Method,Announcements,search}=this.state
     const filteredSearch=sample.filter((state)=>((state.Passage.toLowerCase()).includes(this.state.search.toLowerCase())||(state.Priority.toLowerCase().includes(this.state.search.toLowerCase()))))
     let dateDay=this.state.newDate.getDate() + "/" + parseInt(this.state.newDate.getMonth()+1) + "/" + this.state.newDate.getFullYear();
     return (
@@ -140,7 +140,7 @@ class App extends React.Component {
                             <img src={people} alt="people.png"/>
                           </div>
                           <div className="owner">
-                            <p>Marina<br/><span>Super Administrator</span></p>
+                            <p style={{fontWeight:'600', fontSize:'14px'}}>Marina<br/><span style={{fontWeight:'400', fontSize:'14px'}}>Super Administrator</span></p>
                           </div>
                             <div className="social">
                               <img src={social} alt="social.png"/>
@@ -169,8 +169,8 @@ class App extends React.Component {
               <Input type="date" placeholder="Select a date" onChange={this.changeHandler} value={Date} name="Date"/>
             </div>
             <div className="col-sm-5 col-md-3 col-12 mt-1">
-              <select className="form-control" onChange={this.changeHandler} value={Passage} name="Passage">
-              <option disabled selected>Passage</option>
+              <select className="form-control" onChange={this.changeHandler} value={Notification_Method} name="Notification_Method">
+              <option disabled selected>Notification Method</option>
                 <option value="Email">Email</option>
                 <option value="SMS">Sms</option>
                 <option value="Email + SMS">Email and Sms</option>
@@ -200,13 +200,13 @@ class App extends React.Component {
         </form>
         <div className="upcoming">
           <Upcoming tabs={['Upcoming','Past']} selected={this.state.selected} setSelected={this.setSelected}>
+          <div className="upcometabs container">
+              <div className="col-12 col-sm-12 input">
+                  <i className="fa fa-search" ></i>
+                  <Input type="text" id="input" placeholder="Search for an announcements" name="search" value={search} 
+                  onChange={this.changeSearch}/>
+              </div>
             <Tab isSelected={this.state.selected==='Upcoming'}>
-            <div className="upcometabs container">
-                  <div className="col-12 col-sm-12 input">
-                      <i className="fa fa-search" ></i>
-                      <Input type="text" id="input" placeholder="Search for an announcements" name="search" value={search} 
-                      onChange={this.changeSearch}/>
-                  </div>
                   <div className="announcement">
                       {
                           filteredSearch.map(id=>
@@ -216,9 +216,9 @@ class App extends React.Component {
                                   <p>{id.Passage}</p>
                               </div>
                               <div className="col-sm-6 col-12">
-                                  <p>Vestibulum</p>
+                                  <p style={{fontWeight:'550'}}>{id.Heading}</p>
                                   <p>{id.Announcements}</p>
-                                  <p>{id.Date}</p>
+                                  <p style={{color:'#575DA6'}}>{id.Date}</p>
                               </div>
                               <div className="col-sm-1 ml-3 edit col-5">
                               <i className="fa fa-edit"></i>
@@ -228,11 +228,29 @@ class App extends React.Component {
                               </div>
                       </div>)}
                   </div>
-            </div>
             </Tab>
+            </div>
             <Tab isSelected={this.state.selected==='Past'}>
-            <div className="container">
-
+            <div className="upcometabs container">
+              <div className="announcement">
+                <div className='row row-content each-announcement'> 
+                <div className='col-12 col-sm-3 starts'>
+                    <p className="pills bold NORMAL">Normal</p>
+                    <p>Email</p>
+                </div>
+                <div className="col-sm-6 col-12">
+                    <p style={{fontWeight:'550'}}>Books Purchases</p>
+                    <p>All books are to be purchased at the bookshop and receipts should be kept for each purchase</p>
+                    <p style={{color:'#575DA6'}}>25 December 2020 - 3:30 PM</p>
+                </div>
+                <div className="col-sm-1 ml-3 edit col-5">
+                <i className="fa fa-edit"></i>
+                </div>
+                <div className="col-sm-1 ml-3 delete col-5">
+                  <i className="fa fa-trash-o"></i>
+                </div>
+              </div>
+              </div>
             </div>
             </Tab>
           </Upcoming>
