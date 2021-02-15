@@ -235,8 +235,15 @@ a{
 @media(max-width:400px){
   .second-header{
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
+  }
+  .second-header .interface{
+    background-color: #FFFFFF;
+    padding: 4px;
+    border-radius: 3px;
+    position: relative;
+    top: -2px;
   }
 }

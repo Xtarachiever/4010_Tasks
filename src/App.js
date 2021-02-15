@@ -142,12 +142,14 @@ class App extends React.Component {
                           <div className="owner">
                             <p style={{fontWeight:'600', fontSize:'14px'}}>Marina<br/><span style={{fontWeight:'400', fontSize:'14px'}}>Super Administrator</span></p>
                           </div>
+                          <div>
                             <div className="social">
-                              <img src={social} alt="social.png"/>
-                              <p>Account Settings</p>
-                          </div>
-                          <div className="interface">
-                            <img src={Interface} alt="interface.png"/>
+                                <img src={social} alt="social.png"/>
+                                <p>Account Settings</p>
+                            </div>
+                            <div className="interface">
+                              <img src={Interface} alt="interface.png"/>
+                            </div>
                           </div>
                         </div>
                       </Nav>
