@@ -172,7 +172,7 @@ class App extends React.Component {
             </div>
             <div className="col-sm-5 col-md-3 col-12 mt-1">
               <select className="form-control" onChange={this.changeHandler} value={Notification_Method} name="Notification_Method">
-              <option disabled selected>Notification Method</option>
+                <option disabled selected>Notification Method</option>
                 <option value="Email">Email</option>
                 <option value="SMS">Sms</option>
                 <option value="Email + SMS">Email and Sms</option>
