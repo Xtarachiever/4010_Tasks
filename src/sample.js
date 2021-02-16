@@ -6,7 +6,7 @@ export const sample=
         "Heading":"Sport wears fees",
         "Priority":"MEDIUM",
         "Deliver":"School Wide",
-        "Passage":"Email + Sms",
+        "Passage":"Email + SMS",
         "Announcements":"Students are to pay up for sport wears, which is just a token of 2000 naira"
     },
     {
@@ -15,7 +15,7 @@ export const sample=
         "Heading":"School Fees Payment",
         "Priority":"URGENT",
         "Deliver":"School Wide",
-        "Passage":"Sms",
+        "Passage":"SMS",
         "Announcements":"This is to notify all students of the school fees deadline and the consequence if this deadline is not met"
     },
     {

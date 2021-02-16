@@ -55,12 +55,13 @@ class App extends React.Component {
   setEditAnnouncementsText=(id)=>{
     const updatedAnnouncement=[...this.state.sample].map((el)=>{
       if(el.id===id){
-        el.Announcements=this.state.Announcements
+        el.Announcements=this.state.editAnnouncementsText
       }
       return sample
     })
     this.setState({
-      sample:updatedAnnouncement
+      [this.state.sample.Announcements]:updatedAnnouncement,
+      editAnnouncements:null
     })
   }
   changeHandler=(e)=>{
@@ -77,7 +78,7 @@ class App extends React.Component {
         console.log('fhfhf')
       }
     }
-    console.log(dateDay)
+    // console.log(dateDay)
 
   }
   changeSearch=(e)=>{
@@ -151,7 +152,7 @@ class App extends React.Component {
     let dateDay=this.state.newDate.getDate() + "/" + parseInt(this.state.newDate.getMonth()+1) + "/" + this.state.newDate.getFullYear();
     return (
       <div className="all container">
-        <form onSubmit={this.submitHandler}>
+        <form onSubmit={this.submitHandler} style={{fontFamily:'Nunito Sans'}}>
         <div className="row row-header">
           <div className="announce">
             <p className="bold">ANNOUNCEMENTS</p>
@@ -193,11 +194,11 @@ class App extends React.Component {
             name="Announcements" 
             value={Announcements} onChange={this.changeHandler}/>
           </Col>
-        <div className="row row-content form-details">
-            <div className="col-sm-5 col-md-3 col-12 mt-1">
+        <div className="row row-content form-details ml-1">
+            <div className="col-sm-5 col-xl-2 col-12 mt-1">
               <Input type="date" placeholder="Select a date" onChange={this.changeHandler} value={Date} name="Date"/>
             </div>
-            <div className="col-sm-5 col-md-3 col-12 mt-1">
+            <div className="col-sm-5 col-xl-3 col-12 mt-1">
               <select className="form-control" onChange={this.changeHandler} value={Notification_Method} name="Notification_Method">
                 <option disabled selected>Notification Method</option>
                 <option value="Email">Email</option>
@@ -205,7 +206,7 @@ class App extends React.Component {
                 <option value="Email + SMS">Email and Sms</option>
               </select>
             </div>
-            <Col md={{size:3}} className="mt-1 col-12 col-md-2 col-sm-5">
+            <Col xl={{size:2}} className="mt-1 col-12 col-xl-1 col-sm-5">
               <select className="form-control" onChange={this.changeHandler} value={Deliver} name="Deliver">
                 <option disabled selected>Deliver</option>
                 <option value="School Level">School Wide</option>
@@ -214,7 +215,7 @@ class App extends React.Component {
                 <option value="CourseWide">CourseWide</option>
               </select>
             </Col>
-            <div className="col-md-3 col-sm-5 mt-1">
+            <div className="col-xl-2 col-sm-5 mt-1">
               <select className="form-control" onChange={this.changeHandler} value={Priority} name="Priority">
               <option disabled selected>Priority</option>
                 <option value="Urgent">Urgent</option>
@@ -222,8 +223,8 @@ class App extends React.Component {
                 <option value="Normal">Normal</option>
               </select>
             </div>
-            <div className="button mt-1">
-              <Button type="submit" className="fa fa-plus-circle btn-lg ml-3" onClick={this.clearAll}> Add Announcements</Button>
+            <div className="button col-xl col-md-4 col-sm-6">
+              <Button type="submit" className="fa fa-plus-circle btn-lg mb-1" onClick={this.clearAll}> Add Announcements</Button>
             </div>
         </div>
         </form>
@@ -239,42 +240,43 @@ class App extends React.Component {
                   <div className="announcement">
                       {
                           filteredSearch.map(id=>
-                            
                           <div className='row row-content each-announcement'> 
                             <div className='col-12 col-sm-3 starts'>
                               <p className={`pills bold ${id.Priority || ""}`}>{id.Priority}</p>
-                              <p>{id.Passage}</p>
+                              <p style={{color:'#707884'}}>{id.Passage}</p>
                             </div>
                             {
                               this.state.editAnnouncements===id.id ? 
                                 (<Col md={{size:15}} className="col-sm-12">
-                              <Input type="textarea" rows="8" id="announcements" 
-                              name="Announcements" 
-                              value={id.Announcements} onChange={this.changeHandler}/>
+                              <Input type="textarea" rows="8" id="editAnnouncementsText" 
+                              name="editAnnouncementsText" 
+                              value={this.state.editAnnouncementsText} onChange={this.changeHandler}/>
                             </Col>):
                             (
 
                                   <div className="col-sm-6 col-12">
                                       <p style={{fontWeight:'550'}}>{id.Heading}</p>
-                                      <p>{id.Announcements}</p>
-                                      <p style={{color:'#575DA6'}}>{id.Date}</p>
+                                      <p style={{fontSize:'14px'}}>{id.Announcements}</p>
+                                      <p style={{color:'#575DA6',fontSize:'14px'}}>{id.Date}</p>
                                   </div>
                             )
                             }
-                            {
-                              this.state.editAnnouncements===id.id ? (
-                                <div className="col-sm-1 ml-3 edit col-5">
-                                  <i className="fa fa-paper-plane" onClick={()=>this.setEditAnnouncementsText(id.id)}></i>
-                                </div>
-                              ):(
-                                <div className="col-sm-1 ml-3 edit col-5">
-                                   <i className="fa fa-edit" onClick={()=>this.setEditAnnouncements(id.id)}></i>
-                                </div>
-                              )
-                            }
-                              <div className="col-sm-1 ml-3 delete col-5">
-                                <i className="fa fa-trash-o" onClick={()=>this.deleteAnnouncement(id)}></i>
-                              </div>
+                            <div className="row col-xl-2 col-sm-3 ml-xl-5">
+                                {
+                                  this.state.editAnnouncements===id.id ? (
+                                    <div className=" edit col-6">
+                                      <i className="fa fa-paper-plane" onClick={()=>this.setEditAnnouncementsText(id.id)}></i>
+                                    </div>
+                                  ):(
+                                    <div className=" edit col-6">
+                                      <i className="fa fa-edit" onClick={()=>this.setEditAnnouncements(id.id)}></i>
+                                    </div>
+                                  )
+                                }
+                                  <div className=" delete col-6">
+                                    <i className="fa fa-trash-o" onClick={()=>this.deleteAnnouncement(id)}></i>
+                                  </div>
+                            </div>
                       </div>)}
                   </div>
             </Tab>

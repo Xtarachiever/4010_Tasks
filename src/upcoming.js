@@ -10,7 +10,7 @@ class Upcoming extends React.Component{
                             const active=(tab===this.props.selected ? 'active' : " ");
                             return(
                                 <li className="nav-item" key={tab}>
-                                    <a className="active" onClick={()=>this.props.setSelected(tab)}>{tab}</a>
+                                    <a className={active} onClick={()=>this.props.setSelected(tab)}>{tab}</a>
                                 </li>
                             );
                         })
