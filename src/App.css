@@ -152,6 +152,9 @@ select{
   padding: 5px 0px 5px 0px;
   width: 100%;
 }
+.each-announcement .allAnnouncements{
+  display: flex;
+}
 a{
   cursor: pointer;
 }

@@ -17,6 +17,8 @@ class App extends React.Component {
     this.state={
       isNavOpen:false,
       newDate:new Date(),
+      editAnnouncements:null,
+      editAnnouncementsText:'',
       datas:[],
       selected:'Upcoming',
       search:'',
@@ -24,7 +26,8 @@ class App extends React.Component {
       Priority:'Priority',
       Notification_Method:'Notification Method',
       Announcements:'',
-      Date: ''
+      Date: '',
+      sample:sample
     }
     this.toggleNav = this.toggleNav.bind(this);
   }
@@ -33,8 +36,32 @@ class App extends React.Component {
   //     .then(response => response.json())
   //     .then(data => this.setState({datas:data}))
   // }
+  deleteAnnouncement=(id)=>{
+    const newAnnouncements=this.state.sample.filter(el=>{
+      if(el.Announcements!==id.Announcements){
+        return el!==id
+      }
+    })
+    this.setState({
+      sample:[...newAnnouncements]
+    })
+  }
   setSelected=(tab)=>{
     this.setState({selected:tab});
+  }
+  setEditAnnouncements=(id)=>{
+    this.setState({editAnnouncements:id})
+  }
+  setEditAnnouncementsText=(id)=>{
+    const updatedAnnouncement=[...this.state.sample].map((el)=>{
+      if(el.id===id){
+        el.Announcements=this.state.Announcements
+      }
+      return sample
+    })
+    this.setState({
+      sample:updatedAnnouncement
+    })
   }
   changeHandler=(e)=>{
     let dateDay=this.state.newDate.getDate() + "/" + parseInt(this.state.newDate.getMonth()+1) + "/" + this.state.newDate.getFullYear();
@@ -120,7 +147,7 @@ class App extends React.Component {
   }
   render(){
     const {Date,Deliver,Priority,Notification_Method,Announcements,search}=this.state
-    const filteredSearch=sample.filter((state)=>((state.Passage.toLowerCase()).includes(this.state.search.toLowerCase())||(state.Priority.toLowerCase().includes(this.state.search.toLowerCase()))))
+    const filteredSearch=this.state.sample.filter((state)=>((state.Passage.toLowerCase()).includes(this.state.search.toLowerCase())||(state.Priority.toLowerCase().includes(this.state.search.toLowerCase()))))
     let dateDay=this.state.newDate.getDate() + "/" + parseInt(this.state.newDate.getMonth()+1) + "/" + this.state.newDate.getFullYear();
     return (
       <div className="all container">
@@ -212,21 +239,41 @@ class App extends React.Component {
                   <div className="announcement">
                       {
                           filteredSearch.map(id=>
+                            
                           <div className='row row-content each-announcement'> 
-                              <div className='col-12 col-sm-3 starts'>
-                                  <p className={`pills bold ${id.Priority || ""}`}>{id.Priority}</p>
-                                  <p>{id.Passage}</p>
-                              </div>
-                              <div className="col-sm-6 col-12">
-                                  <p style={{fontWeight:'550'}}>{id.Heading}</p>
-                                  <p>{id.Announcements}</p>
-                                  <p style={{color:'#575DA6'}}>{id.Date}</p>
-                              </div>
-                              <div className="col-sm-1 ml-3 edit col-5">
-                              <i className="fa fa-edit"></i>
-                              </div>
+                            <div className='col-12 col-sm-3 starts'>
+                              <p className={`pills bold ${id.Priority || ""}`}>{id.Priority}</p>
+                              <p>{id.Passage}</p>
+                            </div>
+                            {
+                              this.state.editAnnouncements===id.id ? 
+                                (<Col md={{size:15}} className="col-sm-12">
+                              <Input type="textarea" rows="8" id="announcements" 
+                              name="Announcements" 
+                              value={id.Announcements} onChange={this.changeHandler}/>
+                            </Col>):
+                            (
+
+                                  <div className="col-sm-6 col-12">
+                                      <p style={{fontWeight:'550'}}>{id.Heading}</p>
+                                      <p>{id.Announcements}</p>
+                                      <p style={{color:'#575DA6'}}>{id.Date}</p>
+                                  </div>
+                            )
+                            }
+                            {
+                              this.state.editAnnouncements===id.id ? (
+                                <div className="col-sm-1 ml-3 edit col-5">
+                                  <i className="fa fa-paper-plane" onClick={()=>this.setEditAnnouncementsText(id.id)}></i>
+                                </div>
+                              ):(
+                                <div className="col-sm-1 ml-3 edit col-5">
+                                   <i className="fa fa-edit" onClick={()=>this.setEditAnnouncements(id.id)}></i>
+                                </div>
+                              )
+                            }
                               <div className="col-sm-1 ml-3 delete col-5">
-                                <i className="fa fa-trash-o"></i>
+                                <i className="fa fa-trash-o" onClick={()=>this.deleteAnnouncement(id)}></i>
                               </div>
                       </div>)}
                   </div>
