@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import { Nav, Navbar, NavbarToggler, Collapse, NavItem, Jumbotron,Modal,Input,Label,Button,Col } from 'reactstrap';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import { Nav, Navbar, NavbarToggler, Collapse,Input,Label,Button,Col } from 'reactstrap';
 import {sample} from './sample';
 import Upcoming from './upcoming';
 import Tab from './Tab';
@@ -8,7 +10,7 @@ import {baseUrl} from './baseUrl';
 import Interface from './images/interface.png';
 import people from './images/people.png';
 import social from './images/social.png';
-import axios from 'axios';
+import calendar from './images/calendar.png';
 
 
 class App extends React.Component {
@@ -16,6 +18,7 @@ class App extends React.Component {
     super(props);
     this.state={
       isNavOpen:false,
+      startDate:null,
       newDate:new Date(),
       editAnnouncements:null,
       editAnnouncementsText:'',
@@ -45,6 +48,9 @@ class App extends React.Component {
     this.setState({
       sample:[...newAnnouncements]
     })
+  }
+  setStartDate=(date)=>{
+    this.setState({startDate:date})
   }
   setSelected=(tab)=>{
     this.setState({selected:tab});
@@ -147,86 +153,91 @@ class App extends React.Component {
   }
   }
   render(){
-    const {Date,Deliver,Priority,Notification_Method,Announcements,search}=this.state
+    const {Date,Deliver,Priority,Notification_Method,Announcements,search,startDate}=this.state
     const filteredSearch=this.state.sample.filter((state)=>((state.Passage.toLowerCase()).includes(this.state.search.toLowerCase())||(state.Priority.toLowerCase().includes(this.state.search.toLowerCase()))))
-    let dateDay=this.state.newDate.getDate() + "/" + parseInt(this.state.newDate.getMonth()+1) + "/" + this.state.newDate.getFullYear();
     return (
       <div className="all container">
         <form onSubmit={this.submitHandler} style={{fontFamily:'Nunito Sans'}}>
-        <div className="row row-header">
-          <div className="announce">
-            <p className="bold">ANNOUNCEMENTS</p>
-          </div>
-          <React.Fragment>
-            <Navbar dark expand="md">
-              <div className="container">
-                <NavbarToggler onClick={this.toggleNav}/>
-                    <Collapse isOpen={this.state.isNavOpen} navbar>
-                      <Nav navbar>
-                        <div className="second-header ml-3">
-                          <div className="people">
-                            <img src={people} alt="people.png"/>
-                          </div>
-                          <div className="owner">
-                            <p style={{fontWeight:'600', fontSize:'14px'}}>Marina<br/><span style={{fontWeight:'400', fontSize:'14px'}}>Super Administrator</span></p>
-                          </div>
-                          <div>
-                            <div className="social">
-                                <img src={social} alt="social.png"/>
-                                <p>Account Settings</p>
-                            </div>
-                            <div className="interface">
-                              <img src={Interface} alt="interface.png"/>
-                            </div>
-                          </div>
-                        </div>
-                      </Nav>
-                    </Collapse>
-              </div>
-            </Navbar>
-          </React.Fragment>
-          </div>
-          <div className="col-12">
-            <Label htmlFor="announcements">Add a new announcements</Label>
-          </div>
-          <Col md={{size:15}} className="col-sm-12">
-            <Input type="textarea" rows="8" id="announcements" 
-            name="Announcements" 
-            value={Announcements} onChange={this.changeHandler}/>
-          </Col>
-        <div className="row row-content form-details ml-1">
-            <div className="col-sm-5 col-xl-2 col-12 mt-1">
-              <Input type="date" placeholder="Select a date" onChange={this.changeHandler} value={Date} name="Date"/>
+          <div className="row row-header">
+            <div className="announce">
+              <p className="bold">ANNOUNCEMENTS</p>
             </div>
-            <div className="col-sm-5 col-xl-3 col-12 mt-1">
-              <select className="form-control" onChange={this.changeHandler} value={Notification_Method} name="Notification_Method">
-                <option disabled selected>Notification Method</option>
-                <option value="Email">Email</option>
-                <option value="SMS">Sms</option>
-                <option value="Email + SMS">Email and Sms</option>
-              </select>
+            <React.Fragment>
+              <Navbar dark expand="md">
+                <div className="container">
+                  <NavbarToggler onClick={this.toggleNav}/>
+                      <Collapse isOpen={this.state.isNavOpen} navbar>
+                        <Nav navbar>
+                          <div className="second-header ml-3">
+                            <div className="people">
+                              <img src={people} alt="people.png"/>
+                            </div>
+                            <div className="owner">
+                              <p style={{fontWeight:'600', fontSize:'14px'}}>Marina<br/><span style={{fontWeight:'400', fontSize:'14px'}}>Super Administrator</span></p>
+                            </div>
+                            <div>
+                              <div className="social">
+                                  <img src={social} alt="social.png"/>
+                                  <p>Account Settings</p>
+                              </div>
+                              <div className="interface">
+                                <img src={Interface} alt="interface.png"/>
+                              </div>
+                            </div>
+                          </div>
+                        </Nav>
+                      </Collapse>
+                </div>
+              </Navbar>
+            </React.Fragment>
             </div>
-            <Col xl={{size:2}} className="mt-1 col-12 col-xl-1 col-sm-5">
-              <select className="form-control" onChange={this.changeHandler} value={Deliver} name="Deliver">
-                <option disabled selected>Deliver</option>
-                <option value="School Level">School Wide</option>
-                <option value="Grade Level">Grade Level</option>
-                <option value="Classroom">Classroom</option>
-                <option value="CourseWide">CourseWide</option>
-              </select>
+            <div className="col-12">
+              <Label htmlFor="announcements">Add a new announcements</Label>
+            </div>
+            <Col md={{size:15}} className="col-sm-12">
+              <Input type="textarea" rows="8" id="announcements" 
+              name="Announcements" 
+              value={Announcements} onChange={this.changeHandler}/>
             </Col>
-            <div className="col-xl-2 col-sm-5 mt-1">
-              <select className="form-control" onChange={this.changeHandler} value={Priority} name="Priority">
-              <option disabled selected>Priority</option>
-                <option value="Urgent">Urgent</option>
-                <option value="Medium">Medium</option>
-                <option value="Normal">Normal</option>
-              </select>
-            </div>
-            <div className="button col-xl col-md-4 col-sm-6">
-              <Button type="submit" className="fa fa-plus-circle btn-lg mb-1" onClick={this.clearAll}> Add Announcements</Button>
-            </div>
-        </div>
+          <div className="row row-content form-details ml-1">
+            {/* <div className="col-sm-5 col-xl-2 col-12 mt-1 calender">
+                <DatePicker className="datepicker" selected={startDate} onChange={(date)=>this.setStartDate(date)}
+                placeholder="Select a date"/>
+                <img src={calendar} alt="calender.png" selected={Date} onChange={(date)=>this.setStartDate(date)}/>
+            </div> */}
+              <div className="col-sm-5 col-xl-2 col-12 mt-1 calender">
+                <Input type="date" placeholder="Select a date" onChange={this.changeHandler} value={Date} name="Date"/>
+                <img src={calendar} alt="calender.png" onClick={this.datePicker}/>
+              </div>
+              <div className="col-sm-5 col-xl-3 col-12 mt-1">
+                <select className="form-control" onChange={this.changeHandler} value={Notification_Method} name="Notification_Method">
+                  <option disabled selected>Notification Method</option>
+                  <option value="Email">Email</option>
+                  <option value="SMS">Sms</option>
+                  <option value="Email + SMS">Email and Sms</option>
+                </select>
+              </div>
+              <Col xl={{size:2}} className="mt-1 col-12 col-xl-1 col-sm-5">
+                <select className="form-control" onChange={this.changeHandler} value={Deliver} name="Deliver">
+                  <option disabled selected>Deliver</option>
+                  <option value="School Level">School Wide</option>
+                  <option value="Grade Level">Grade Level</option>
+                  <option value="Classroom">Classroom</option>
+                  <option value="CourseWide">CourseWide</option>
+                </select>
+              </Col>
+              <div className="col-xl-2 col-sm-5 mt-1">
+                <select className="form-control" onChange={this.changeHandler} value={Priority} name="Priority">
+                <option disabled selected>Priority</option>
+                  <option value="Urgent">Urgent</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Normal">Normal</option>
+                </select>
+              </div>
+              <div className="button col-xl col-md-4 col-sm-6">
+                <Button type="submit" className="btn-lg mt-1" onClick={this.clearAll}><i className="fa fa-plus-circle"></i> Add Announcements</Button>
+              </div>
+          </div>
         </form>
         <div className="upcoming">
           <Upcoming tabs={['Upcoming','Past']} selected={this.state.selected} setSelected={this.setSelected}>
