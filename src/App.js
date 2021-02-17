@@ -254,14 +254,14 @@ class App extends React.Component {
                             </Col>):
                             (
 
-                                  <div className="col-sm-6 col-12">
+                                  <div className="col-sm-6 col-xl-7 col-12">
                                       <p style={{fontWeight:'550'}}>{id.Heading}</p>
                                       <p style={{fontSize:'14px'}}>{id.Announcements}</p>
                                       <p style={{color:'#575DA6',fontSize:'14px'}}>{id.Date}</p>
                                   </div>
                             )
                             }
-                            <div className="row col-xl-2 col-sm-3 ml-xl-5">
+                            <div className="row col-xl-2 col-sm-3">
                                 {
                                   this.state.editAnnouncements===id.id ? (
                                     <div className=" edit col-6">
