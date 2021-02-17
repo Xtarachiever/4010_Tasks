@@ -22,16 +22,6 @@ body{
   padding: 1px;
   margin-bottom: 3px;
 }
-.calender img{
-  width: 20px;
-  align-self: center;
-  position: absolute;
-  right: 25px;
-}
-.calender{
-  display: flex;
-  flex-direction: row;
-}
 .nav-item a{
   border: 1px solid #EDEEF4;
   padding: 10px 30px 10px 30px;
@@ -158,9 +148,10 @@ select:focus {
   border-color: green;
   outline: 0;
 }
-/* input[type="date"]::-webkit-calendar-picker-indicator{
-    display: none;
-} */
+input::-webkit-calendar-picker-indicator,input::-moz-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+}
 .input{
   display: flex;
   align-items: center;
@@ -169,6 +160,17 @@ select:focus {
 .input i{
   position: relative;
   left: 30px;
+}
+input::-webkit-calendar-picker-indicator::after,input::-moz-calendar-picker-indicator::after{
+  content: '';
+  display: block;
+  background: url(https://t.co/CZduDlHgkd) no-repeat;
+  background-size: 10%;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  transform: translateX(-2%);
+
 }
 .input input{
   background-color:#F6F8FB;

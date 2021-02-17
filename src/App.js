@@ -207,7 +207,6 @@ class App extends React.Component {
             </div> */}
               <div className="col-sm-5 col-xl-2 col-12 mt-1 calender">
                 <Input type="date" placeholder="Select a date" onChange={this.changeHandler} value={Date} name="Date"/>
-                <img src={calendar} alt="calender.png" onClick={this.datePicker}/>
               </div>
               <div className="col-sm-5 col-xl-3 col-12 mt-1">
                 <select className="form-control" onChange={this.changeHandler} value={Notification_Method} name="Notification_Method">
